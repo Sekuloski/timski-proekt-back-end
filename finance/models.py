@@ -3,6 +3,8 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
+from customers.models import CustomUser
+
 # Create your models here.
 
 ADDITION_TYPES = [
@@ -20,6 +22,7 @@ class ExpenseType(models.Model):
 
 
 class Purchase(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     amount: int = models.IntegerField()
     description: str = models.CharField(max_length=255)
     date: datetime.datetime = models.DateTimeField(default=timezone.now)
@@ -30,6 +33,7 @@ class Purchase(models.Model):
 
 
 class Addition(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     amount: int = models.IntegerField()
     description: str = models.CharField(max_length=255)
     date: datetime.datetime = models.DateTimeField(default=timezone.now)
