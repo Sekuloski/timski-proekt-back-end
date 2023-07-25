@@ -2,7 +2,9 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 
 from customers.views import RegisterView, ChangePasswordView, UpdateProfileView, LogoutView, LogoutAllView
-
+"""
+http://127.0.0.1:8000/customer/logout_all
+"""
 urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
