@@ -51,6 +51,29 @@ Get all purchases from the user that is logged in - Requires Authentication
 
 Get the purchase with id '1' if the user has access to it. - Requires Authentication
 
+### POST /purchase/upload
+
+Upload purchases from a csv file in the format:
+
+User_id,Description,Date (**strict format**), Name of Expense Type (**Case sensitive**)
+
+    1,1000,description1,2020-03-20:17:30:00,Football
+    1,2000,description2,2020-05-20:11:20:00,Football
+    1,1400,description3,2020-07-20:14:30:00,Takeaway
+    1,1500,description4,2020-09-20:20:30:00,Bill
+    1,1100,description5,2020-11-20:17:30:00,Football
+
+Error is thrown if user doesn't exist. If the expense type doesn't exist, it is created.
+
+The basic form needed for this:
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="purchases">
+        <button type="submit">Upload File</button>
+    </form>
+
+Where 'name' has to be "**purchases**".
+
 ### GET /addition/ 
 
 Get all additions from the user that is logged in - Requires Authentication

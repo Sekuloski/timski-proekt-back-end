@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-+bhm%+sgd4rd%$gbdhvlr3_p2%^4leb(0*r54k5ghw%9yan-%h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sekuloski.mk']
+ALLOWED_HOSTS = ['sekuloski.mk', '127.0.0.1']
 
 
 # Application definition
@@ -107,6 +107,7 @@ DEFAULTS = {
 
 SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=15),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True
 }

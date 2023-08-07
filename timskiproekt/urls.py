@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
+
+import api.views
 from api.views import PurchaseViewSet, AdditionViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -33,4 +35,5 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('customer/', include('customers.urls')),
     path('', include(router.urls)),
+    path('purchase/upload', api.views.upload_csv)
 ]
