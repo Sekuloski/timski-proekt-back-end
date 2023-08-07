@@ -35,5 +35,6 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('customer/', include('customers.urls')),
     path('', include(router.urls)),
-    path('purchase/upload', api.views.upload_csv)
+    path('purchase/upload', api.views.upload_purchases_from_csv),
+    path('addition/upload', api.views.upload_additions_from_csv)
 ]

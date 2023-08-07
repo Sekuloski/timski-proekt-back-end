@@ -74,6 +74,31 @@ The basic form needed for this:
 
 Where 'name' has to be "**purchases**".
 
+### POST /addition/upload
+
+Upload additions from a csv file in the format:
+
+User_id,Description,Date (**strict format**), Addition_id (**from select**)
+
+    1,1000,description1,2020-03-20:17:30:00,0
+    1,2000,description2,2020-05-20:11:20:00,0
+    1,1400,description3,2020-07-20:14:30:00,1
+    1,1500,description4,2020-09-20:20:30:00,1
+    1,1100,description5,2020-11-20:17:30:00,2
+
+Addition_id can be 0 (Salary), 1 (ATM), 2 (Sale)
+
+Error is thrown if user doesn't exist.
+
+The basic form needed for this:
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="additions">
+        <button type="submit">Upload File</button>
+    </form>
+
+Where 'name' has to be "**additions**".
+
 ### GET /addition/ 
 
 Get all additions from the user that is logged in - Requires Authentication
