@@ -23,7 +23,7 @@ def upload_purchases_from_csv(request):
         <button type="submit">Upload File</button>
     </form>
     """
-    if request.method == 'POST':
+    if request.user.is_authenticated:
         try:
             file = request.FILES['purchases']
 
@@ -33,23 +33,27 @@ def upload_purchases_from_csv(request):
         if not file.name.endswith('csv'):
             return HttpResponse('File is not csv format!', status=400)
 
+        user_id = request.user.id
         data = file.read().decode('UTF-8').split('\r\n')
         csv_reader = csv.reader(data, delimiter=',', quotechar='|')
         for column in csv_reader:
             try:
-                expense_type = ExpenseType.objects.get(name__exact=column[4])
+                expense_type = ExpenseType.objects.get(name__exact=column[3])
             except ObjectDoesNotExist:
-                expense_type = ExpenseType(name=column[4])
+                expense_type = ExpenseType(name=column[3])
                 expense_type.save()
             Purchase(
-                user=CustomUser.objects.get(pk=int(column[0])),
-                amount=column[1],
-                description=column[2],
-                date=column[3],
+                user=CustomUser.objects.get(pk=int(user_id)),
+                amount=column[0],
+                description=column[1],
+                date=column[2],
                 expense_type=expense_type
             ).save()
 
         return HttpResponse('Purchases added!', status=200)
+
+    else:
+        return HttpResponse('User not logged in!', status=401)
 
 
 @api_view(['POST'])
@@ -62,7 +66,7 @@ def upload_additions_from_csv(request):
         <button type="submit">Upload File</button>
     </form>
     """
-    if request.method == 'POST':
+    if request.user.is_authenticated:
         try:
             file = request.FILES['additions']
 
@@ -72,18 +76,21 @@ def upload_additions_from_csv(request):
         if not file.name.endswith('csv'):
             return HttpResponse('File is not csv format!', status=400)
 
+        user_id = request.user.id
         data = file.read().decode('UTF-8').split('\r\n')
         csv_reader = csv.reader(data, delimiter=',', quotechar='|')
         for column in csv_reader:
             Addition(
-                user=CustomUser.objects.get(pk=int(column[0])),
-                amount=column[1],
-                description=column[2],
-                date=column[3],
-                addition_type=int(column[4])
+                user=CustomUser.objects.get(pk=int(user_id)),
+                amount=column[0],
+                description=column[1],
+                date=column[2],
+                addition_type=int(column[3])
             ).save()
 
         return HttpResponse('Additions added!', status=200)
+    else:
+        return HttpResponse('User not logged in!', status=401)
 
 
 class PurchaseViewSet(ReadOnlyModelViewSet):

@@ -55,15 +55,15 @@ Get the purchase with id '1' if the user has access to it. - Requires Authentica
 
 Upload purchases from a csv file in the format:
 
-User_id,Description,Date (**strict format**), Name of Expense Type (**Case sensitive**)
+Description,Date (**strict format**), Name of Expense Type (**Case sensitive**)
 
-    1,1000,description1,2020-03-20:17:30:00,Football
-    1,2000,description2,2020-05-20:11:20:00,Football
-    1,1400,description3,2020-07-20:14:30:00,Takeaway
-    1,1500,description4,2020-09-20:20:30:00,Bill
-    1,1100,description5,2020-11-20:17:30:00,Football
+    1000,description1,2020-03-20:17:30:00,Football
+    2000,description2,2020-05-20:11:20:00,Football
+    1400,description3,2020-07-20:14:30:00,Takeaway
+    1500,description4,2020-09-20:20:30:00,Bill
+    1100,description5,2020-11-20:17:30:00,Football
 
-Error is thrown if user doesn't exist. If the expense type doesn't exist, it is created.
+Error is thrown if user isn't logged in. If the expense type doesn't exist, it is created.
 
 The basic form needed for this:
 
@@ -78,17 +78,17 @@ Where 'name' has to be "**purchases**".
 
 Upload additions from a csv file in the format:
 
-User_id,Description,Date (**strict format**), Addition_id (**from select**)
+Description,Date (**strict format**), Addition_id (**from select**)
 
-    1,1000,description1,2020-03-20:17:30:00,0
-    1,2000,description2,2020-05-20:11:20:00,0
-    1,1400,description3,2020-07-20:14:30:00,1
-    1,1500,description4,2020-09-20:20:30:00,1
-    1,1100,description5,2020-11-20:17:30:00,2
+    1000,description1,2020-03-20:17:30:00,0
+    2000,description2,2020-05-20:11:20:00,0
+    1400,description3,2020-07-20:14:30:00,1
+    1500,description4,2020-09-20:20:30:00,1
+    1100,description5,2020-11-20:17:30:00,2
 
 Addition_id can be 0 (Salary), 1 (ATM), 2 (Sale)
 
-Error is thrown if user doesn't exist.
+Error is thrown if user isn't logged in
 
 The basic form needed for this:
 
