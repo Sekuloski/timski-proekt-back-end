@@ -3,12 +3,12 @@ import csv
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from api.serializers import PurchaseSerializer, AdditionSerializer
 from customers.models import CustomUser
-from finance.models import Purchase, Addition, ExpenseType, ADDITION_TYPES
+from finance.models import Purchase, Addition, ExpenseType
 
 
 # Create your views here.

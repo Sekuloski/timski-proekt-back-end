@@ -126,8 +126,12 @@ WSGI_APPLICATION = 'timskiproekt.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'timskiproekt_dev',
+        'USER': 'sekuloski',
+        'PASSWORD': 'sekuloski',
+        'HOST': 'timskiproekt-db',
+        'PORT': '5432',
     }
 }
 
