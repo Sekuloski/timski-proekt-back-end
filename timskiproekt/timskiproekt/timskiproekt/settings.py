@@ -28,8 +28,8 @@ SECRET_KEY = 'django-insecure-+bhm%+sgd4rd%$gbdhvlr3_p2%^4leb(0*r54k5ghw%9yan-%h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sekuloski.mk', '127.0.0.1', 'localhost']
-
+ALLOWED_HOSTS = ['sekuloski.mk', '127.0.0.1', 'localhost', 'tp.sekuloski.mk']
+CSRF_TRUSTED_ORIGINS = ['https://tp.sekuloski.mk', 'https://localhost', 'https://sekuloski.mk', 'https://127.0.0.1']
 
 # Application definition
 
@@ -66,8 +66,6 @@ ROOT_URLCONF = 'timskiproekt.urls'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_REPLACE_HTTPS_REFERER = True
-
 CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',
                       'content-type', 'accept', 'origin', 'authorization', 'access-control-allow-origin')
 
@@ -185,5 +183,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-CSRF_TRUSTED_ORIGINS = ['http://sekuloski.mk', 'http://sekuloski.mk:27015']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
