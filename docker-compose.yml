@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      target: prod
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - timskiproekt:/timskiproekt/static
+      - /certs:/certs
+    restart: always
+
+  timskiproekt:
+    build: timskiproekt/timskiproekt
+    command: gunicorn timskiproekt.wsgi:application --bind 0.0.0.0:8080
+    expose:
+      - 8080
+    environment:
+      - DEBUG=0
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 tp.sekuloski.mk tp.sekuloski.mk
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_SERVICES}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_KEY_SERVICES}
+    depends_on:
+      - nginx
+      - timskiproekt-db
+    volumes:
+      - timskiproekt:/timskiproekt/static
+    restart: always
+
+  timskiproekt-db: # Database for the Finances API
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data_timskiproekt:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=sekuloski
+      - POSTGRES_PASSWORD=sekuloski
+      - POSTGRES_DB=timskiproekt_dev
+    restart: always
+
+volumes:
+  timskiproekt:
+  postgres_data_timskiproekt:
