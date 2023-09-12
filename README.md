@@ -1,8 +1,23 @@
 # Timski Proekt Back-end
 
+## Overview
+
+This is a Django project that hosts our teams back-end. It is hosted on an AWS EC2 instance using Docker Compose, on the url
+https://tp.sekuloski.mk. The project consists of an NGINX container, which directs tp.sekuloski.mk request to the back-end, and the 
+actual project 'timskiproekt'. Both of these are connected using the docker-compose.yml file, hosted on port 443. The Django project is 
+very simple, using the added libraries 'djangorestframework' for REST API call, 'djangorestframework-simplejwt' for JWT token management,
+and 'gunicorn' which is a production server hoster. To run this project locally, run the following command:
+
+    sudo docker compose up -f ./docker-compose.dev.yml -d --build
+
+This will run the development docker compose project and host the project on localhost:8000.
+
 ## Endpoints
 
-### POST /customer/login
+One thing to note, every endpoint must end with a '/'
+The following endpoints are available:
+
+### POST /customer/login/
 
     {
        "email": "",
@@ -13,7 +28,7 @@ Returns an Access and a Refresh token. Store these as a cookie. The access token
 as a credential for the user, while the refresh token is used to refresh the access token.
 
 
-### POST /customer/login/refresh
+### POST /customer/login/refresh/
 
     {
        "refresh": "" <- REFRESH TOKEN HERE
@@ -51,7 +66,7 @@ Get all purchases from the user that is logged in - Requires Authentication
 
 Get the purchase with id '1' if the user has access to it. - Requires Authentication
 
-### POST /purchase/upload
+### POST /purchase/upload/
 
 Upload purchases from a csv file in the format:
 
@@ -74,7 +89,7 @@ The basic form needed for this:
 
 Where 'name' has to be "**purchases**".
 
-### POST /addition/upload
+### POST /addition/upload/
 
 Upload additions from a csv file in the format:
 
@@ -103,11 +118,11 @@ Where 'name' has to be "**additions**".
 
 Get all additions from the user that is logged in - Requires Authentication
 
-### GET /addition/1
+### GET /addition/1/
 
 Get the addition with id '1' if the user has access to it. - Requires Authentication
 
-## Models:
+## Models
 
 ### User
 - First Name 
