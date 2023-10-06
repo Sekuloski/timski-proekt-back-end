@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-+bhm%+sgd4rd%$gbdhvlr3_p2%^4leb(0*r54k5ghw%9yan-%h
 DEBUG = True
 
 ALLOWED_HOSTS = ['sekuloski.mk', '127.0.0.1', 'localhost', 'tp.sekuloski.mk']
-CSRF_TRUSTED_ORIGINS = ['https://tp.sekuloski.mk', 'https://localhost', 'https://sekuloski.mk', 'https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://tp.sekuloski.mk', 'https://localhost', 'https://sekuloski.mk', 'https://127.0.0.1', 'https://tp.sekuloski.mk:8443']
 
 # Application definition
 
