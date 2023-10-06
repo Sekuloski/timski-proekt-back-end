@@ -31,7 +31,7 @@ services:
     restart: always
 
   timskiproekt-db: # Database for the Finances API
-    image: postgres:13.0-alpine
+    image: arm64v8/postgres:16rc1-alpine3.18
     volumes:
       - postgres_data_timskiproekt:/var/lib/postgresql/data/
     environment:

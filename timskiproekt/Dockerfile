@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM python:3.12.0a7-alpine AS builder
+FROM --platform=$BUILDPLATFORM arm64v8/python:3.12.0rc2-alpine3.18 AS builder
 WORKDIR /timskiproekt
 
 # Set environment variables

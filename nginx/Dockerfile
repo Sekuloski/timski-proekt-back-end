@@ -1,4 +1,4 @@
-FROM nginx AS prod
+FROM arm64v8/nginx:1.25.2-alpine AS prod
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY proxy_params /etc/nginx/proxy_params
@@ -10,7 +10,7 @@ RUN ln -s /etc/nginx/sites-available/timskiproekt.conf /etc/nginx/sites-enabled/
 
 CMD ["nginx", "-g", "daemon off;"]
 
-FROM nginx AS dev
+FROM arm64v8/nginx:1.25.2-alpine AS dev
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY proxy_params /etc/nginx/proxy_params
