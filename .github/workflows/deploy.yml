@@ -1,0 +1,27 @@
+name: Deploy Back-end
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'timskiproekt/**'
+      - 'nginx/**'
+
+jobs:
+  build:
+    # This is an EC2 instance pointing to my domain
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build and run Docker Compose
+        # These environment variables are needed to gather all remaining secrets from AWS
+        env:
+            AWS_ACCESS_KEY_SERVICES: ${{ secrets.AWS_ACCESS_KEY_SERVICES }}
+            AWS_SECRET_KEY_SERVICES: ${{ secrets.AWS_SECRET_KEY_SERVICES }}
+            AWS_REGION_SERVICES: ${{ secrets.AWS_REGION_SERVICES }}
+        run: docker compose up -d --build
