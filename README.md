@@ -3,8 +3,8 @@
 ## Overview
 
 This is a Django project that hosts our teams back-end. It is hosted on an AWS EC2 instance using Docker Compose, on the url
-https://tp.sekuloski.mk. The project consists of an NGINX container, which directs tp.sekuloski.mk request to the back-end, and the 
-actual project 'timskiproekt'. Both of these are connected using the docker-compose.yml file, hosted on port 443. The Django project is 
+https://tp.sekuloski.mk:8443. The project consists of an NGINX container, which directs tp.sekuloski.mk request to the back-end, and the 
+actual project 'timskiproekt'. Both of these are connected using the docker-compose.yml file, hosted on port 8443. The Django project is 
 very simple, using the added libraries 'djangorestframework' for REST API call, 'djangorestframework-simplejwt' for JWT token management,
 and 'gunicorn' which is a production server hoster. To run this project locally, run the following command:
 
@@ -31,7 +31,7 @@ as a credential for the user, while the refresh token is used to refresh the acc
 ### POST /customer/login/refresh/
 
     {
-       "refresh": "" <- REFRESH TOKEN HERE
+       "refresh": ""
     }
 
 If a logged-in user gets a 401 unauthorized, refresh the token and try again.
@@ -70,7 +70,7 @@ Get the purchase with id '1' if the user has access to it. - Requires Authentica
 
 Upload purchases from a csv file in the format:
 
-Description,Date (**strict format**), Name of Expense Type (**Case sensitive**)
+Amount, Description, Date (**strict format**), Name of Expense Type (**Case sensitive**)
 
     1000,description1,2020-03-20:17:30:00,Football
     2000,description2,2020-05-20:11:20:00,Football
@@ -93,7 +93,7 @@ Where 'name' has to be "**purchases**".
 
 Upload additions from a csv file in the format:
 
-Description,Date (**strict format**), Addition_id (**from select**)
+Amount, Description, Date (**strict format**), Addition_id (**from select**)
 
     1000,description1,2020-03-20:17:30:00,0
     2000,description2,2020-05-20:11:20:00,0
