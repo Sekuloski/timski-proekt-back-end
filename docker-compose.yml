@@ -11,7 +11,7 @@ services:
     volumes:
       - timskiproekt:/timskiproekt/static
       - /certs:/certs
-    restart: always
+#    restart: always
 
   timskiproekt:
     build: timskiproekt
@@ -28,7 +28,7 @@ services:
       - timskiproekt-db
     volumes:
       - timskiproekt:/timskiproekt/static
-    restart: always
+#    restart: always
 
   timskiproekt-db: # Database for the Finances API
     image: arm64v8/postgres:16rc1-alpine3.18
@@ -38,7 +38,7 @@ services:
       - POSTGRES_USER=sekuloski
       - POSTGRES_PASSWORD=sekuloski
       - POSTGRES_DB=timskiproekt_dev
-    restart: always
+#    restart: always
 
 volumes:
   timskiproekt:
